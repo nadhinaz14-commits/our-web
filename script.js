@@ -43,26 +43,8 @@ const TRACKS = [
   {
     title:  "ONE LESS LONELY GIRL",          /* ← ganti judul lagu */
     artist: "JUSTIN BIEBER",           /* ← ganti nama artis */
-    src:    "/one_less.mp3"       /* ← ganti path file  */
+    src:    "one_less.mp3"       /* ← ganti path file  */
   },
-
-  /* ── TRACK 2 — tambah / hapus sesuai kebutuhan ── */
-  {
-    title:  "Nama Lagu 2",
-    artist: "Nama Artis",
-    src:    "music/lagu2.mp3"
-  },
-
-  /*
-    Untuk menambah lagu baru, copy blok ini dan isi datanya:
-
-    {
-      title:  "...",
-      artist: "...",
-      src:    "music/....mp3"
-    },
-  */
-
 ];
 /* ════════════════════════════════════════════════════════════
    akhir konfigurasi musik — tidak perlu ubah kode di bawah
