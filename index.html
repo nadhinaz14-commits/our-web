@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> 🐝💕</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════════
+       FLOATING PARTICLES (dibuat otomatis oleh JS)
+       ════════════════════════════════════════════ -->
+  <div id="particles"></div>
+
+  <!-- ════════════════════════════════════════════
+       NAVIGASI
+       ════════════════════════════════════════════ -->
+  <nav>
+    <div class="nav-logo">🐝</div>
+    <ul class="nav-links">
+      <li><a href="#music">Music</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#notes">Notes</a></li>
+      <li><a href="#reasons">Reasons</a></li>
+    </ul>
+  </nav>
+
+  <!-- ════════════════════════════════════════════
+       HERO
+       ════════════════════════════════════════════ -->
+  <section class="hero">
+    <div class="hero-badge">our web</div>
+    <div class="hero-bees">🐝 💕 🐝</div>
+    <a href="#music" class="btn-primary">scroll down ya bee</a>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       MUSIC PLAYER
+       ════════════════════════════════════════════ -->
+  <section class="music-section" id="music">
+    <div class="section-inner">
+      <div class="section-title fade-in">
+        <span class="eyebrow">pilih musiknya yaa bee</span>
+        <h2>our <em>music</em></h2>
+        <span class="divider"></span>
+      </div>
+
+      <div class="music-player fade-in">
+        <!-- Cover album, klik untuk play/pause -->
+        <div class="music-cover" id="music-cover" onclick="togglePlay()">
+          <span id="cover-icon">🎵</span>
+        </div>
+
+        <!-- Judul lagu & info ditampilkan dari JS -->
+        <div class="music-title" id="music-title">No Track Loaded</div>
+        <div class="music-artist" id="music-artist">Tambahkan lagu di script.js</div>
+
+        <!-- Progress bar -->
+        <div class="music-progress-wrap" onclick="seekMusic(event)">
+          <div class="music-progress-bar" id="progress-bar"></div>
+        </div>
+        <div class="music-time">
+          <span id="time-current">0:00</span>
+          <span id="time-total">0:00</span>
+        </div>
+
+        <!-- Tombol kontrol -->
+        <div class="music-controls">
+          <button class="ctrl-btn" onclick="prevTrack()" title="Lagu sebelumnya">⏮</button>
+          <button class="play-btn" id="play-btn" onclick="togglePlay()">▶</button>
+          <button class="ctrl-btn" onclick="nextTrack()" title="Lagu berikutnya">⏭</button>
+        </div>
+
+        <!-- Daftar playlist (dirender otomatis dari array di script.js) -->
+        <div class="music-playlist" id="playlist"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       GALERI FOTO
+       ════════════════════════════════════════════ -->
+  <section class="gallery-section" id="gallery">
+    <div class="section-inner">
+      <div class="section-title fade-in">
+        <span class="eyebrow">Our pict</span>
+        <h2>selamat <em></em>lihat-lihat</h2>
+        <span class="divider"></span>
+      </div>
+
+      <!-- Grid foto (diisi oleh JS, tiap card punya tombol hapus & crop) -->
+      <div class="gallery-grid fade-in" id="gallery-grid"></div>
+
+      <!-- Tombol Upload + Crop -->
+      <div class="gallery-upload-wrap fade-in">
+        <label class="upload-label" for="photo-input">
+          + Upload 
+        </label>
+        <input type="file" id="photo-input" accept="image/*" style="display:none;" onchange="handlePhotoUpload(event)" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       LIGHTBOX (fullscreen preview foto)
+       ════════════════════════════════════════════ -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img id="lightbox-img" src="" alt="Preview" />
+  </div>
+
+  <!-- ════════════════════════════════════════════
+       MODAL CROP FOTO
+       ════════════════════════════════════════════ -->
+  <div class="crop-modal" id="crop-modal">
+    <div class="crop-modal-inner">
+      <h3 class="crop-title">✂️ Sesuaikan Foto</h3>
+      <p class="crop-hint">Geser &amp; zoom untuk memilih area foto</p>
+
+      <div class="crop-container">
+        <div class="crop-viewport" id="crop-viewport">
+          <img id="crop-img" src="" alt="Crop preview" draggable="false" />
+        </div>
+        <div class="crop-overlay-frame"></div>
+      </div>
+
+      <div class="crop-controls">
+        <label class="crop-zoom-label">🔍 Zoom</label>
+        <input type="range" id="crop-zoom" min="1" max="3" step="0.01" value="1" oninput="applyCropZoom()" />
+      </div>
+
+      <div class="crop-actions">
+        <button class="btn-ghost" onclick="cancelCrop()">Batal</button>
+        <button class="btn-primary" onclick="confirmCrop()">Pakai Foto Ini ✓</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════
+       KATA-KATA CINTA
+       ════════════════════════════════════════════ -->
+  <section class="notes-section" id="notes">
+    <div class="section-inner">
+      <div class="section-title fade-in">
+        <span class="eyebrow">tambahin aja yaa bee</span>
+        <h2> <em>NOTES</em></h2>
+        <span class="divider"></span>
+      </div>
+
+      <div class="notes-grid fade-in" id="notes-grid"></div>
+
+      <div class="notes-add-wrap fade-in">
+        <button class="btn-primary" onclick="toggleNoteEditor()" id="note-toggle-btn">+ Tambah Pesan Baru</button>
+        <div class="notes-editor" id="notes-editor">
+          <textarea id="note-text-input" placeholder="Tulis kata-katamu di sini... 💕"></textarea>
+          <input type="text" id="note-tag-input" placeholder="Label / Tag (contoh: Sayang, Kangen, dll)" />
+          <button class="btn-ghost" onclick="cancelNote()">Batal</button>
+          <button class="btn-primary" onclick="saveNote()">Simpan 💕</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       ALASAN KENAPA KAMU
+       ════════════════════════════════════════════ -->
+  <section class="reasons-section" id="reasons">
+    <div class="section-inner">
+      <div class="section-title fade-in">
+        <span class="eyebrow">🌹 Why You</span>
+        <h2>Kenapa <em>Kamu?</em></h2>
+        <span class="divider"></span>
+      </div>
+
+      <div class="reasons-list fade-in" id="reasons-list"></div>
+
+      <div class="reasons-add-wrap fade-in">
+        <button class="btn-primary" onclick="toggleReasonInput()" id="reason-toggle-btn">+ Tambah Alasan Baru</button>
+        <br />
+        <input type="text" id="reason-input" placeholder="Alasan kamu suka dia... 🌹" />
+        <div id="reason-input-btns" style="display:none; margin-top:8px;">
+          <button class="btn-ghost" onclick="cancelReason()">Batal</button>
+          <button class="btn-primary" onclick="saveReason()">Simpan 🌹</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       FOOTER
+       ════════════════════════════════════════════ -->
+  <footer>
+    <div class="footer-title">we are forever</div>
+    <div class="footer-heart">💕</div>
+    <p class="footer-sub">Made with love, from me to u </p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
