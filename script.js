@@ -43,7 +43,7 @@ const TRACKS = [
   {
     title:  "ONE LESS LONELY GIRL",          /* ← ganti judul lagu */
     artist: "JUSTIN BIEBER",           /* ← ganti nama artis */
-    src:    "one_less.mp3"       /* ← ganti path file  */
+    src:    "/one_less.mp3"       /* ← ganti path file  */
   },
 
   /* ── TRACK 2 — tambah / hapus sesuai kebutuhan ── */
