@@ -41,9 +41,9 @@ const TRACKS = [
 
   /* ── TRACK 1 — ganti dengan lagu pertama kamu ── */
   {
-    title:  "Nama Lagu 1",          /* ← ganti judul lagu */
-    artist: "Nama Artis",           /* ← ganti nama artis */
-    src:    "music/lagu1.mp3"       /* ← ganti path file  */
+    title:  "ONE LESS LONELY GIRL",          /* ← ganti judul lagu */
+    artist: "JUSTIN BIEBER",           /* ← ganti nama artis */
+    src:    "one_less.mp3"       /* ← ganti path file  */
   },
 
   /* ── TRACK 2 — tambah / hapus sesuai kebutuhan ── */
